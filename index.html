@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>صدقة ودعاء على روح فادي أحمد جودة</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0; font-family:Tahoma,Arial,sans-serif;
+ background:#f1f8f3; color:#174b35;
+ display:flex; justify-content:center; padding:20px 12px;
+}
+main{
+ width:100%; max-width:440px; text-align:center;
+ background:white; border:1px solid #d7e9dc;
+ border-radius:24px; padding:24px 18px;
+ box-shadow:0 8px 30px #174b3510;
+}
+.icon{font-size:38px}
+h1{font-size:25px; margin:10px 0;color:#176342}
+p{line-height:1.9}
+.subtitle{color:#668574;font-size:14px}
+.dua{
+ background:#f0f8f2; border-radius:16px;
+ padding:14px; line-height:2; margin:18px 0;
+}
+label{display:block;margin:16px 0 8px;font-weight:bold}
+select,button{
+ width:100%; border-radius:12px; padding:14px;
+ font-size:16px; font-family:inherit;
+}
+select{border:1px solid #c7ddcd;background:white;color:#174b35}
+.count{font-size:64px;font-weight:bold;margin:20px 0;color:#176342}
+button{border:0;cursor:pointer}
+.primary{background:#19734b;color:white;font-size:19px}
+.secondary{background:#edf6ef;color:#176342;margin-top:10px}
+.small{font-size:13px;color:#668574}
+footer{font-size:12px;color:#82978a;margin-top:22px}
+</style>
+</head>
+<body>
+<main>
+ <div class="icon">🤍</div>
+ <h1>صدقة ودعاء</h1>
+ <p><strong>على روح فادي أحمد جودة</strong></p>
+ <p class="subtitle">اذكروا الله وادعوا له بالرحمة والمغفرة</p>
+
+ <div class="dua">
+  اللهم اغفر لفادي أحمد جودة وارحمه،
+  وعافه واعفُ عنه، وأكرم نزله،
+  ووسّع مدخله، واجعل قبره روضةً من رياض الجنة،
+  واجمعه بأحبابه في الفردوس الأعلى.
+ </div>
+
+ <label for="zekr">اختار الذكر</label>
+ <select id="zekr">
+  <option>سبحان الله</option>
+  <option>الحمد لله</option>
+  <option>الله أكبر</option>
+  <option>أستغفر الله</option>
+  <option>لا إله إلا الله</option>
+  <option>اللهم صل وسلم على نبينا محمد</option>
+ </select>
+
+ <div class="count" id="count" aria-live="polite">0</div>
+ <p id="current">سبحان الله</p>
+ <button class="primary" id="plus">سبّح 🤲</button>
+ <button class="secondary" id="reset">تصفير العداد</button>
+ <button class="secondary" id="share">مشاركة الصفحة</button>
+
+ <p class="small">اجعل لسانك عامرًا بذكر الله، ولا تنسَ فاديًا من دعائك.</p>
+ <footer>اللهم ارحمه رحمةً واسعة وأسكنه فسيح جناتك</footer>
+</main>
+
+<script>
+let count = 0;
+const countEl = document.getElementById('count');
+const zekr = document.getElementById('zekr');
+const current = document.getElementById('current');
+
+function update(){
+ countEl.textContent = count;
+ current.textContent = zekr.value;
+}
+document.getElementById('plus').addEventListener('click',()=>{
+ count++;
+ update();
+});
+document.getElementById('reset').addEventListener('click',()=>{
+ if(confirm('هل تريد تصفير العداد؟')){
+  count = 0;
+  update();
+ }
+});
+zekr.addEventListener('change', update);
+document.getElementById('share').addEventListener('click',async()=>{
+ const data = {
+  title: document.title,
+  text: 'سبحة إلكترونية ودعاء على روح فادي أحمد جودة',
+  url: location.href
+ };
+ try{
+  if(navigator.share) await navigator.share(data);
+  else if(navigator.clipboard){
+   await navigator.clipboard.writeText(location.href);
+   alert('تم نسخ الرابط');
+  }else{
+   prompt('انسخ رابط الصفحة',location.href);
+  }
+ }catch(e){}
+});
+</script>
+</body>
+</html>
